@@ -1,0 +1,33 @@
+.header {
+  border-bottom: 1px solid var(--badges);
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.navigation{
+  
+}
+
+
+.navigationList{
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  text-decoration: none;
+}
+.navigationItem{
+    list-style: none;
+}
+
+.active {
+  font-weight: bold;
+  color: var(--button-hover);
+}
+
+.accent {
+  color: var(--button-hover);
+}

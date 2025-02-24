@@ -1,9 +1,27 @@
 /* src/index.css */
 
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
+:root {
+  --main: #101828;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #fff;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+ 
 }
+
+:root {
+  --font-family: 'Manrope', sans-serif;
+  --second-family: 'Inter', sans-serif;
+}
+
+body {
+  line-height: 1.2;
+}
+
+
 
 h1,
 h2,
@@ -25,4 +43,18 @@ ol {
 img {
   display: block;
   max-width: 100%;
+}
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
 }

@@ -1,0 +1,33 @@
+.home {
+  background-image: url(/public/images/Picture.jpg);
+  width: 1440px;
+  height: 696px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  align-items: center; 
+
+  text-align: center; 
+  padding-bottom: 60px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.description {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
