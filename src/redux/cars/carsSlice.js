@@ -1,12 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchBrands } from './operations';
+import { handleError, handleLoading } from '../../utils';
 
 const initialState = {
-  favorites: [], 
+  cars: [],
+  brands: [],
+  favorites: [],
   filters: {
     brand: null,
     price: null,
     mileage: { from: null, to: null },
   },
+  loading: false,
+  error: null,
 };
 
 const carsSlice = createSlice({
@@ -28,7 +34,20 @@ const carsSlice = createSlice({
       state.filters = initialState.filters;
     },
   },
+
+  extraReducers: builder => {
+    builder
+      .addCase(fetchBrands.pending, handleLoading)
+      .addCase(fetchBrands.fulfilled, (state, action) => {
+        state.loading = false;
+        state.brands = action.payload;
+      })
+
+      .addCase(fetchBrands.rejected, handleError);
+  },
 });
 
-export const { toggleFavorite, setFilters, resetFilters } = carsSlice.actions;
+export const { toggleFavorite, setFilters, resetFilters} =
+  carsSlice.actions;
+
 export const cars = carsSlice.reducer;
