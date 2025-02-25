@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, Select, MenuItem, FormControl, InputAdornment } from "@mui/material";
 import css from "./CarSearch.module.css";
 import { fetchCars } from "../../redux/cars/operations";
-import { resetFilters, setFilters } from "../../redux/cars/carsSlice";
+import { cleanCars, resetFilters, setFilters } from "../../redux/cars/carsSlice";
 
-const CarSearch = () => {
+const CarSearch = ({setPage}) => {
   const dispatch = useDispatch();
 
   const brands = useSelector((state) => state.cars.brands);
@@ -24,9 +24,7 @@ const CarSearch = () => {
     return new Intl.NumberFormat().format(num);
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchCars(filters));
-  // }, [dispatch]); 
+
 
   const handleSearch = () => {
     const cleanMileageFrom = mileageFrom ? mileageFrom.replace(/[^\d]/g, '') : '';
@@ -40,10 +38,12 @@ const CarSearch = () => {
         maxMileage: cleanMileageTo
       }
     };
-
+    
+    setPage(1)
     dispatch(resetFilters());
     dispatch(setFilters(filters));
-    dispatch(fetchCars({ ...filters, limit: 55 }));
+    dispatch(fetchCars({ ...filters, limit: 55, page: 1 }));
+    dispatch(cleanCars());
   };
 
   const handleInputChange = (e, setter) => {
@@ -69,7 +69,7 @@ const CarSearch = () => {
             MenuProps={{
               PaperProps: {
                 style: {
-                  
+
                   maxHeight: 272, // максимальная высота выпадающего списка
                   overflowY: 'auto', // добавление прокрутки, если список превышает maxHeight
                 },
@@ -81,7 +81,7 @@ const CarSearch = () => {
             </MenuItem>
             {brands.map((brand, idx) => (
               <MenuItem key={idx} value={brand} sx={{
-               
+
                 fontSize: '16px',
                 color: '#8D929A',
                 paddingTop: 0, // Убирает отступ сверху

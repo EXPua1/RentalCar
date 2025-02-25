@@ -11,13 +11,13 @@ createRoot(document.getElementById('root')).render(
 
   <Provider store={store}>
 
-    <StrictMode>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </PersistGate>
-    </StrictMode>
+
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
+
   </Provider>
 
 )

@@ -20,7 +20,7 @@ export const fetchBrands = createAsyncThunk(
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
   async (
-    { brand, rentalPrice, mileage, page = 1, limit = 12 },
+    { brand, rentalPrice, mileage, page = 1, limit = 8 },
     { rejectWithValue }
   ) => {
     try {
@@ -40,9 +40,12 @@ export const fetchCars = createAsyncThunk(
       const response = await fetch(url);
       if (!response.ok) throw new Error('Error in fetching data');
 
-      const { cars } = await response.json();
+      // Получаем все данные, включая количество машин и количество страниц
+      const { cars, totalCars, totalPages } = await response.json();
       console.log('Fetched data: ', cars);
-      return { cars, page };
+
+      // Возвращаем объект с необходимыми данными
+      return { cars, totalCars, totalPages };
     } catch (error) {
       return rejectWithValue(error.message);
     }

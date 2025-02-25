@@ -3,10 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../../redux/cars/carsSlice"; // Импортируем экшен
 import css from "./CarCardItem.module.css";
 import Button from "../Button/Button";
+import { selectPrice } from "../../redux/cars/selectors";
 
 const CarCardItem = ({ cars }) => {
     const dispatch = useDispatch();
     const favorites = useSelector((state) => state.cars.favorites);
+    const priceFilter = useSelector(selectPrice);
+
+    const filteredCars = cars.filter((car) => {
+
+        if (!priceFilter) return true;
+
+
+        return parseFloat(car.rentalPrice) === parseFloat(priceFilter); // Теперь сравниваем числа
+    });
 
     const handleFavoriteClick = (carId) => {
         dispatch(toggleFavorite(carId)); // Отправляем в Redux
@@ -14,8 +24,8 @@ const CarCardItem = ({ cars }) => {
 
     return (
         <>
-            {cars.length > 0 ? (
-                cars.map((car) => {
+            {filteredCars.length > 0 ? (
+                filteredCars.map((car) => { // Здесь выводим только отфильтрованные автомобили
                     const isFavorite = favorites.includes(car.id); // Проверяем, есть ли в избранном
 
                     return (
@@ -32,9 +42,7 @@ const CarCardItem = ({ cars }) => {
                                             src={isFavorite ? "/public/1.svg" : "/public/heart.svg"}
                                             alt="Favorite"
                                         />
-                                        
                                     </button>
-
                                 </div>
                                 <div className={css.info}>
                                     <div className={css.carInfo}>
@@ -42,7 +50,6 @@ const CarCardItem = ({ cars }) => {
                                         <p className={css.model}>{car.model},</p>
                                         <span className={css.year}>{car.year}</span>
                                     </div>
-
                                     <p>${car.rentalPrice} </p>
                                 </div>
                                 <div className={css.location}>
@@ -54,7 +61,7 @@ const CarCardItem = ({ cars }) => {
                                     <p className={css.typeVehicle}>{car.type}</p>
                                     <p className={css.mileage}>{car.mileage.toLocaleString("ru-RU")}</p>
                                 </div>
-                                <Button text="View"  to={`/catalog/${car.id}`} size="big" />
+                                <Button text="View" to={`/catalog/${car.id}`} size="big" />
                             </div>
                         </li>
                     );

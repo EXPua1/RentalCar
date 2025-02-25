@@ -1,15 +1,16 @@
 .image {
-  
   width: 276px;
   border-radius: 14px;
   display: block;
 }
-.item{
-      display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Равномерное распределение */
-    align-items: stretch;
-    height: 100%; /* Заставляет все элементы быть одинаковыми */
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Равномерное распределение */
+  align-items: stretch;
+  height: 100%; /* Заставляет все элементы быть одинаковыми */
+
+  
 }
 
 .info {
@@ -77,25 +78,25 @@
   padding-right: 6px;
 }
 
-.mileage{
+.mileage {
   margin-left: 6px;
 }
 
-.imageWrapper{
-    position: relative;
-    display: inline-block;
+.imageWrapper {
+  position: relative;
+  display: inline-block;
 }
 .favorite {
   position: absolute;
   top: 10px;
   right: 10px;
-  
+
   border: none;
   padding: 8px;
- 
+
   cursor: pointer;
 }
 
-.favoriteImg{
+.favoriteImg {
   width: 20px;
 }

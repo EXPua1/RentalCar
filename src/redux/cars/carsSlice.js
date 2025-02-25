@@ -13,6 +13,8 @@ const initialState = {
   },
   loading: false,
   error: null,
+  totalPages: 0,
+  totalCars: 0,
 };
 
 const carsSlice = createSlice({
@@ -33,6 +35,9 @@ const carsSlice = createSlice({
     resetFilters: state => {
       state.filters = initialState.filters;
     },
+    cleanCars: state => {
+      state.cars = [];
+    }
   },
 
   extraReducers: builder => {
@@ -47,15 +52,13 @@ const carsSlice = createSlice({
       // Добавляем обработку для fetchCars
       .addCase(fetchCars.pending, state => {
         state.loading = true;
-        state.cars = []; // очищаем старые данные
+        
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        if (action.payload.page === 1) {
-          state.cars = action.payload.cars; // Если это первая страница, заменяем данные
-        } else {
-          state.cars = [...state.cars, ...action.payload.cars]; // Добавляем к уже загруженным
-        }
+        state.cars = [...state.cars, ...action.payload.cars]; // Добавляем новые машины к текущим
+        state.totalPages = action.payload.totalPages;
+        state.totalCars = action.payload.totalCars;
       })
       .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;
@@ -64,6 +67,6 @@ const carsSlice = createSlice({
   },
 });
 
-export const { toggleFavorite, setFilters, resetFilters } = carsSlice.actions;
+export const { toggleFavorite, setFilters, resetFilters, cleanCars } = carsSlice.actions;
 
 export const cars = carsSlice.reducer;
