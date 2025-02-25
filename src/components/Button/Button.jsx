@@ -1,13 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import css from './Button.module.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import css from './Button.module.css';
 
-const Button = ({text, to, size}) => {
+const Button = ({ text, to, size, transparent,center }) => {
   return (
-      <Link to={to} >
-          <button className={`${css.button} ${css[size]}`}>{text}</button>
-      </Link>
-  )
-}
+    <Link to={to}>
+      <button className={`${css.button} ${css[size]} ${transparent ? css.transparent : ''} ${center ? css.center : ''}`}>
+        {text}
+      </button>
+    </Link>
+  );
+};
 
-export default Button
+export default Button;

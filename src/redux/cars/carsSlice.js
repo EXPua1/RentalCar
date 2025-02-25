@@ -51,7 +51,11 @@ const carsSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        state.cars = action.payload;
+        if (action.payload.page === 1) {
+          state.cars = action.payload.cars; // Если это первая страница, заменяем данные
+        } else {
+          state.cars = [...state.cars, ...action.payload.cars]; // Добавляем к уже загруженным
+        }
       })
       .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;

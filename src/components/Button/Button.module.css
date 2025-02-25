@@ -19,3 +19,15 @@
   width: 156px;
   height: 44px;
 }
+
+.transparent {
+  background-color: transparent;
+  border: 1px solid var(--button);
+  color: var(--main);
+}
+
+
+.center {
+  display: block;
+  margin: 20px auto; /* Центрирование по горизонтали */
+}

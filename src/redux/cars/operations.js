@@ -20,7 +20,7 @@ export const fetchBrands = createAsyncThunk(
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
   async (
-    { brand, rentalPrice, mileage, limit = 12 }, // Правильное значение по умолчанию
+    { brand, rentalPrice, mileage, page = 1, limit = 12 },
     { rejectWithValue }
   ) => {
     try {
@@ -28,26 +28,23 @@ export const fetchCars = createAsyncThunk(
 
       if (brand) params.append('brand', brand);
       if (rentalPrice) params.append('rentalPrice', rentalPrice);
-
       if (mileage?.minMileage) params.append('minMileage', mileage.minMileage);
       if (mileage?.maxMileage) params.append('maxMileage', mileage.maxMileage);
 
-      // Добавляем limit в конец URL
-      const url = `https://car-rental-api.goit.global/cars?${params.toString()}&limit=${limit}`;
+      params.append('page', page); // Добавляем страницу в запрос
+      params.append('limit', limit); // Количество машин на странице
+
+      const url = `https://car-rental-api.goit.global/cars?${params.toString()}`;
       console.log('Request URL: ', url);
 
       const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error('Error in fetching data');
-      }
+      if (!response.ok) throw new Error('Error in fetching data');
 
       const { cars } = await response.json();
       console.log('Fetched data: ', cars);
-      return cars;
+      return { cars, page };
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
-

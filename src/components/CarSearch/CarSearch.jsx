@@ -24,9 +24,9 @@ const CarSearch = () => {
     return new Intl.NumberFormat().format(num);
   };
 
-  useEffect(() => {
-    dispatch(fetchCars(filters));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCars(filters));
+  // }, [dispatch]); 
 
   const handleSearch = () => {
     const cleanMileageFrom = mileageFrom ? mileageFrom.replace(/[^\d]/g, '') : '';
