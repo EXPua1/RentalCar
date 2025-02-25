@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchBrands } from './operations';
+import { fetchBrands, fetchCars } from './operations';
 import { handleError, handleLoading } from '../../utils';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   favorites: [],
   filters: {
     brand: null,
-    price: null,
+    rentalPrice: null,
     mileage: { from: null, to: null },
   },
   loading: false,
@@ -42,12 +42,24 @@ const carsSlice = createSlice({
         state.loading = false;
         state.brands = action.payload;
       })
+      .addCase(fetchBrands.rejected, handleError)
 
-      .addCase(fetchBrands.rejected, handleError);
+      // Добавляем обработку для fetchCars
+      .addCase(fetchCars.pending, state => {
+        state.loading = true;
+        state.cars = []; // очищаем старые данные
+      })
+      .addCase(fetchCars.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cars = action.payload;
+      })
+      .addCase(fetchCars.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { toggleFavorite, setFilters, resetFilters} =
-  carsSlice.actions;
+export const { toggleFavorite, setFilters, resetFilters } = carsSlice.actions;
 
 export const cars = carsSlice.reducer;

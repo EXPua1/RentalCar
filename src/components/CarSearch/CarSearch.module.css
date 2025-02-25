@@ -1,0 +1,14 @@
+.title {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+  margin-top: 84px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

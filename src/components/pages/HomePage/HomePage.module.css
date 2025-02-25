@@ -1,5 +1,5 @@
 .home {
-  background-image: url(/public/images/Picture.jpg);
+ background-image: url(/images/Picture.jpg);
   width: 1440px;
   height: 696px;
   margin: 0 auto;
@@ -11,6 +11,7 @@
   text-align: center; 
   padding-bottom: 60px;
 }
+
 
 .title {
   font-family: var(--font-family);

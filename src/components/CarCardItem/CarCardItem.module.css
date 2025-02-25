@@ -1,0 +1,74 @@
+.image {
+  margin-top: 54px;
+  width: 256px;
+  border-radius: 14px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 14px;
+  margin-top: 16px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+}
+.carInfo {
+  display: flex;
+}
+.carInfo p {
+  display: inline-block;
+  margin-right: 5px; /* Добавляем пробел между маркой и моделью */
+}
+.model {
+  color: var(--button);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+}
+
+.location {
+  display: flex;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+}
+
+.address:first-child {
+  margin-right: 6px;
+  border-right: 1px solid #dadde1;
+  padding-right: 6px;
+}
+
+.addressCountry {
+  margin-right: 6px;
+}
+
+.company {
+  border-left: 1px solid #dadde1;
+  padding-left: 6px;
+}
+
+.type {
+  display: flex;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+  margin-top: 4px;
+  margin-bottom: 32px;
+}
+
+.typeVehicle {
+  border-right: 1px solid #dadde1;
+  padding-right: 6px;
+}
+
+.mileage{
+  margin-left: 6px;
+}
