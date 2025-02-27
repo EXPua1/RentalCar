@@ -31,8 +31,8 @@ export const fetchCars = createAsyncThunk(
       if (mileage?.minMileage) params.append('minMileage', mileage.minMileage);
       if (mileage?.maxMileage) params.append('maxMileage', mileage.maxMileage);
 
-      params.append('page', page); // Добавляем страницу в запрос
-      params.append('limit', limit); // Количество машин на странице
+      params.append('page', page); 
+      params.append('limit', limit); 
 
       const url = `https://car-rental-api.goit.global/cars?${params.toString()}`;
       console.log('Request URL: ', url);
@@ -40,11 +40,11 @@ export const fetchCars = createAsyncThunk(
       const response = await fetch(url);
       if (!response.ok) throw new Error('Error in fetching data');
 
-      // Получаем все данные, включая количество машин и количество страниц
+      
       const { cars, totalCars, totalPages } = await response.json();
       console.log('Fetched data: ', cars);
 
-      // Возвращаем объект с необходимыми данными
+      
       return { cars, totalCars, totalPages };
     } catch (error) {
       return rejectWithValue(error.message);

@@ -3,9 +3,12 @@ import css from './CarPrice.module.css'
 
 const CarPrice = ({ car }) => {
     return (
-        <span>
-            {car.rentalPrice}
-        </span>
+        <div className={css.container}>
+            <span className={css.price}>
+                {car.rentalPrice}$
+            </span>
+        </div>
+
     )
 }
 

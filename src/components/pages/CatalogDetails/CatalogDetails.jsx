@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCar } from '../../../services/api';
-import { CircularProgress, Container, Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import CarImage from '../../CarImage/CarImage';
 import CarWrapper from '../../CarWrapper/CarWrapper';
 import CarDetails from '../../CarDetails/CarDetails';
 import CarPrice from '../../CarPrice/CarPrice';
 import CarWrapperInfo from '../../CarWrapperInfo/CarWrapperInfo';
+import Container from '../../Container/Container';
+import CarDescription from '../../CarDescription/CarDescription';
+import RentalConditions from '../../RentalConditions/RentalConditions';
+import CarSpecification from '../../CarSpecification/CarSpecification';
+import Functionality from '../../Functionality/Functionality';
+import BookingForm from '../../BookingForm/BookingForm';
 
 const CatalogDetails = () => {
   const [car, setCar] = useState(null);
@@ -33,13 +39,7 @@ const CatalogDetails = () => {
 
   return (
     <Container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: loading ? '100vh' : 'auto',
-        mt: error || !car ? 4 : 0,
-      }}
+
     >
       {loading ? (
         <CircularProgress />
@@ -49,11 +49,18 @@ const CatalogDetails = () => {
         <Typography color="textSecondary">Car not found</Typography>
       ) : (
         <CarWrapper>
+          <CarWrapperInfo>
+            <CarImage car={car} />
+            <BookingForm />
+          </CarWrapperInfo>
 
-          <CarImage car={car} />
           <CarWrapperInfo>
             <CarDetails car={car} />
             <CarPrice car={car} />
+            <CarDescription car={car} />
+            <RentalConditions car={car} />
+            <CarSpecification car={car} />
+            <Functionality car={car} />
           </CarWrapperInfo>
 
 

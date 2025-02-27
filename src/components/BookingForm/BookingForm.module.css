@@ -1,0 +1,33 @@
+.container {
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light);
+  max-width: 640px;
+  margin-top: 40px;
+}
+.title {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+
+.description {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+
+.formField{
+  margin-bottom: 16px;
+}
+.button{
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}

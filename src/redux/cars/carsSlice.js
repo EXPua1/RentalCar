@@ -33,7 +33,7 @@ const carsSlice = createSlice({
           favorite => favorite.id !== carId
         );
       } else {
-        state.favorites.push(car); // Добавляем весь объект машины
+        state.favorites.push(car); 
       }
     },
     clearFavorites: state => {
@@ -59,13 +59,13 @@ const carsSlice = createSlice({
       })
       .addCase(fetchBrands.rejected, handleError)
 
-      // Добавляем обработку для fetchCars
+      
       .addCase(fetchCars.pending, state => {
         state.loading = true;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        state.cars = [...state.cars, ...action.payload.cars]; // Добавляем новые машины к текущим
+        state.cars = [...state.cars, ...action.payload.cars]; 
         state.totalPages = action.payload.totalPages;
         state.totalCars = action.payload.totalCars;
       })

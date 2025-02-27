@@ -31,7 +31,7 @@ const CarSearch = ({ setPage }) => {
     const cleanMileageTo = mileageTo ? mileageTo.replace(/[^\d]/g, '') : '';
 
     const filters = {
-      ...(brand !== "All" && brand && { brand }), // Исключаем "All" и пустые значения
+      ...(brand !== "All" && brand && { brand }), 
       ...(price && { rentalPrice: price }),
       ...(cleanMileageFrom || cleanMileageTo
         ? { mileage: { minMileage: cleanMileageFrom || undefined, maxMileage: cleanMileageTo || undefined } }
@@ -43,17 +43,17 @@ const CarSearch = ({ setPage }) => {
     dispatch(resetFilters()); 
     dispatch(setFilters(filters));
 
-    // Проверяем, есть ли активные фильтры
+    
     if (Object.keys(filters).length === 0) {
-      dispatch(fetchCars({ page: 1 })); // Без фильтров
+      dispatch(fetchCars({ page: 1 })); 
     } else {
-      dispatch(fetchCars({ ...filters,limit:100, page: 1 })); // С фильтрами
+      dispatch(fetchCars({ ...filters,limit:100, page: 1 })); 
     }
   };
 
   const handleInputChange = (e, setter) => {
     let value = e.target.value;
-    // Убираем все символы, кроме цифр
+   
     value = value.replace(/[^\d]/g, '');
     setter(formatNumber(value));
   };
@@ -75,8 +75,8 @@ const CarSearch = ({ setPage }) => {
               PaperProps: {
                 style: {
 
-                  maxHeight: 272, // максимальная высота выпадающего списка
-                  overflowY: 'auto', // добавление прокрутки, если список превышает maxHeight
+                  maxHeight: 272, 
+                  overflowY: 'auto', 
                 },
               },
             }}
@@ -90,8 +90,8 @@ const CarSearch = ({ setPage }) => {
 
                 fontSize: '16px',
                 color: '#8D929A',
-                paddingTop: 0, // Убирает отступ сверху
-                paddingBottom: 0, // Убирает отступ снизу
+                paddingTop: 0, 
+                paddingBottom: 0, 
               }}>
                 {brand}
               </MenuItem>
@@ -111,8 +111,8 @@ const CarSearch = ({ setPage }) => {
             MenuProps={{
               PaperProps: {
                 style: {
-                  maxHeight: 300, // максимальная высота выпадающего списка
-                  overflowY: 'auto', // добавление прокрутки, если список превышает maxHeight
+                  maxHeight: 300, 
+                  overflowY: 'auto', 
                 },
               },
             }}
@@ -125,8 +125,8 @@ const CarSearch = ({ setPage }) => {
 
                 fontSize: '16px',
                 color: '#8D929A',
-                paddingTop: 0, // Убирает отступ сверху
-                paddingBottom: 0, // Убирает отступ снизу
+                paddingTop: 0, 
+                paddingBottom: 0, 
               }}>
                 {price}
               </MenuItem>

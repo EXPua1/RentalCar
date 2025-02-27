@@ -1,5 +1,7 @@
 .image_Container{
-    width: 640px;
+    max-width: 640px;
+    /* margin-right: 72px; */
+    /* min-width: 320px; */
     
 }
 

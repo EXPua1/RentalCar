@@ -1,0 +1,28 @@
+.title {
+  margin-top: 90px;
+  font-family: var(--font-family);
+font-weight: 600;
+font-size: 20px;
+line-height: 120%;
+color: var(--main);
+}
+
+.list {
+    margin-top: 20px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  column-gap: 33px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+.itemInner{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
