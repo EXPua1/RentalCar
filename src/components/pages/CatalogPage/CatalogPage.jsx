@@ -11,22 +11,26 @@ import { cleanCars, resetFilters } from '../../../redux/cars/carsSlice';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
+  const cars = useSelector((state) => state.cars.cars);
   const filters = useSelector((state) => state.cars.filters);
   const totalPages = useSelector((state) => state.cars.totalPages)
   const loading = useSelector((state) => state.cars.loading);
   const [page, setPage] = useState(1); // Состояние для текущей страницы
 
-  useEffect(() => {
-    dispatch(cleanCars());
-    dispatch(resetFilters());
-    dispatch(fetchCars({ ...filters, page }));
 
+  useEffect(() => {
+
+    if (cars.length === 0) {
+      dispatch(fetchCars());
+    }
 
     dispatch(fetchBrands());
   }, [dispatch]);
 
+ 
+
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1); // Увеличиваем страницу на 1
+    setPage((prevPage) => prevPage + 1); 
     dispatch(fetchCars({ page: page + 1 }));
 
   };
@@ -35,15 +39,18 @@ const CatalogPage = () => {
     <Container>
       <CarSearch setPage={setPage} />
       <CarCard />
-      <Button
 
-        size={'small'}
-        text={loading ? 'Loading...' : 'Load More'}
-        transparent={true}
-        center={true}
-        onClick={handleLoadMore}
-        disabled={loading || isLastPage}
-      />
+      {page < totalPages && (
+        
+        <Button
+          size="small"
+          text={loading ? "Loading..." : "Load More"}
+          transparent={true}
+          center={true}
+          onClick={handleLoadMore}
+          disabled={loading || isLastPage}
+        />
+      )}
     </Container>
   );
 };

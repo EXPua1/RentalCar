@@ -5,7 +5,7 @@ import css from "./CarSearch.module.css";
 import { fetchCars } from "../../redux/cars/operations";
 import { cleanCars, resetFilters, setFilters } from "../../redux/cars/carsSlice";
 
-const CarSearch = ({setPage}) => {
+const CarSearch = ({ setPage }) => {
   const dispatch = useDispatch();
 
   const brands = useSelector((state) => state.cars.brands);
@@ -31,19 +31,24 @@ const CarSearch = ({setPage}) => {
     const cleanMileageTo = mileageTo ? mileageTo.replace(/[^\d]/g, '') : '';
 
     const filters = {
-      brand,
-      rentalPrice: price,
-      mileage: {
-        minMileage: cleanMileageFrom,
-        maxMileage: cleanMileageTo
-      }
+      ...(brand !== "All" && brand && { brand }), // Исключаем "All" и пустые значения
+      ...(price && { rentalPrice: price }),
+      ...(cleanMileageFrom || cleanMileageTo
+        ? { mileage: { minMileage: cleanMileageFrom || undefined, maxMileage: cleanMileageTo || undefined } }
+        : {}),
     };
-    
-    setPage(1)
-    dispatch(resetFilters());
+
+    setPage(1);
+    dispatch(cleanCars()); 
+    dispatch(resetFilters()); 
     dispatch(setFilters(filters));
-    dispatch(fetchCars({ ...filters, limit: 55, page: 1 }));
-    dispatch(cleanCars());
+
+    // Проверяем, есть ли активные фильтры
+    if (Object.keys(filters).length === 0) {
+      dispatch(fetchCars({ page: 1 })); // Без фильтров
+    } else {
+      dispatch(fetchCars({ ...filters,limit:100, page: 1 })); // С фильтрами
+    }
   };
 
   const handleInputChange = (e, setter) => {
@@ -79,7 +84,8 @@ const CarSearch = ({setPage}) => {
             <MenuItem value="" disabled>
               Choose a brand
             </MenuItem>
-            {brands.map((brand, idx) => (
+            {["All", ...brands].map((brand, idx) => (
+
               <MenuItem key={idx} value={brand} sx={{
 
                 fontSize: '16px',
@@ -114,7 +120,7 @@ const CarSearch = ({setPage}) => {
             <MenuItem value="" disabled>
               Select price
             </MenuItem>
-            {[30, 40, 50, 60, 70, 80, 90, 100].map((price) => (
+            {[30, 40, 50, 60, 70, 80, 90, 100, 110].map((price) => (
               <MenuItem key={price} value={price} sx={{
 
                 fontSize: '16px',

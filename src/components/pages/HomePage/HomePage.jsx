@@ -1,12 +1,16 @@
-import React from 'react'
-import Container from '../../Container/Container'
+import React, { useEffect } from 'react'
+
 import css from './HomePage.module.css'
 import Button from '../../Button/Button'
 
 
+
 const HomePage = () => {
+
+
     return (
 
+      
 
         <div className={css.home}>
             <div>

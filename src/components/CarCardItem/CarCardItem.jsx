@@ -11,22 +11,20 @@ const CarCardItem = ({ cars }) => {
     const priceFilter = useSelector(selectPrice);
 
     const filteredCars = cars.filter((car) => {
-
         if (!priceFilter) return true;
 
-
-        return parseFloat(car.rentalPrice) === parseFloat(priceFilter); // Теперь сравниваем числа
+        return parseFloat(car.rentalPrice) === parseFloat(priceFilter);
     });
 
     const handleFavoriteClick = (carId) => {
-        dispatch(toggleFavorite(carId)); // Отправляем в Redux
+        dispatch(toggleFavorite(carId));
     };
 
     return (
         <>
             {filteredCars.length > 0 ? (
-                filteredCars.map((car) => { // Здесь выводим только отфильтрованные автомобили
-                    const isFavorite = favorites.includes(car.id); // Проверяем, есть ли в избранном
+                filteredCars.map((car) => {
+                    const isFavorite = favorites.some((favorite) => favorite.id === car.id); // Проверяем по объекту, а не только по ID
 
                     return (
                         <li className={css.item} key={car.id}>
@@ -39,7 +37,7 @@ const CarCardItem = ({ cars }) => {
                                     >
                                         <img
                                             className={css.favoriteImg}
-                                            src={isFavorite ? "/public/1.svg" : "/public/heart.svg"}
+                                            src={isFavorite ? "1.svg" : "heart.svg"}
                                             alt="Favorite"
                                         />
                                     </button>

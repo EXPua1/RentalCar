@@ -23,11 +23,21 @@ const carsSlice = createSlice({
   reducers: {
     toggleFavorite: (state, action) => {
       const carId = action.payload;
-      if (state.favorites.includes(carId)) {
-        state.favorites = state.favorites.filter(id => id !== carId);
+      const car = state.cars.find(car => car.id === carId);
+      const isFavorite = state.favorites.some(
+        favorite => favorite.id === carId
+      );
+
+      if (isFavorite) {
+        state.favorites = state.favorites.filter(
+          favorite => favorite.id !== carId
+        );
       } else {
-        state.favorites.push(carId);
+        state.favorites.push(car); // Добавляем весь объект машины
       }
+    },
+    clearFavorites: state => {
+      state.favorites = [];
     },
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
@@ -37,7 +47,7 @@ const carsSlice = createSlice({
     },
     cleanCars: state => {
       state.cars = [];
-    }
+    },
   },
 
   extraReducers: builder => {
@@ -52,7 +62,6 @@ const carsSlice = createSlice({
       // Добавляем обработку для fetchCars
       .addCase(fetchCars.pending, state => {
         state.loading = true;
-        
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
@@ -67,6 +76,6 @@ const carsSlice = createSlice({
   },
 });
 
-export const { toggleFavorite, setFilters, resetFilters, cleanCars } = carsSlice.actions;
+export const { toggleFavorite, setFilters, resetFilters, cleanCars, clearFavorites } = carsSlice.actions;
 
 export const cars = carsSlice.reducer;

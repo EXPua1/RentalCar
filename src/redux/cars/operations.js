@@ -20,7 +20,7 @@ export const fetchBrands = createAsyncThunk(
 export const fetchCars = createAsyncThunk(
   'cars/fetchCars',
   async (
-    { brand, rentalPrice, mileage, page = 1, limit = 8 },
+    { brand, rentalPrice, mileage, page = 1, limit = 8 } ={},
     { rejectWithValue }
   ) => {
     try {

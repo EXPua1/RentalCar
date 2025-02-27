@@ -1,0 +1,8 @@
+.image_Container{
+    width: 640px;
+    
+}
+
+.image_Container img{
+    border-radius: 19px;
+}
