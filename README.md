@@ -15,7 +15,7 @@ This project is a web application for car rental. Users can search for available
 
 1.  Clone the repository:
    ```bash
-   git clone https://github.com/your-username/car-rental-app.git
+   git clone https://github.com/EXPua1/RentalCar.git
    ```
 
    
