@@ -24,7 +24,7 @@ const CarCardItem = ({ cars }) => {
         <>
             {filteredCars.length > 0 ? (
                 filteredCars.map((car) => {
-                    const isFavorite = favorites.some((favorite) => favorite.id === car.id); // Проверяем по объекту, а не только по ID
+                    const isFavorite = favorites.some((favorite) => favorite.id === car.id);
 
                     return (
                         <li className={css.item} key={car.id}>
@@ -45,7 +45,7 @@ const CarCardItem = ({ cars }) => {
                                 <div className={css.info}>
                                     <div className={css.carInfo}>
                                         <p>{car.brand}</p>
-                                        <p className={css.model}>{car.model},</p>
+                                        <p className={css.model}>{car.model.split(' ')[0]},</p>
                                         <span className={css.year}>{car.year}</span>
                                     </div>
                                     <p>${car.rentalPrice} </p>
