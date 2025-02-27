@@ -7,7 +7,7 @@ import css from './CatalogPage.module.css';
 import CarSearch from '../../CarSearch/CarSearch';
 import CarCard from '../../CarCard/CarCard';
 import Button from '../../Button/Button';
-import { cleanCars, resetFilters } from '../../../redux/cars/carsSlice';
+
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const CatalogPage = () => {
   const filters = useSelector((state) => state.cars.filters);
   const totalPages = useSelector((state) => state.cars.totalPages)
   const loading = useSelector((state) => state.cars.loading);
-  const [page, setPage] = useState(1); // Состояние для текущей страницы
+  const [page, setPage] = useState(1);
 
 
   useEffect(() => {

@@ -8,6 +8,8 @@ import { cleanCars, resetFilters, setFilters } from "../../redux/cars/carsSlice"
 const CarSearch = ({ setPage }) => {
   const dispatch = useDispatch();
 
+  const prises = [30, 40, 50, 60, 70, 80, 90, 100, 110]
+
   const brands = useSelector((state) => state.cars.brands);
   const loading = useSelector((state) => state.cars.loading);
   const error = useSelector((state) => state.cars.error);
@@ -32,7 +34,7 @@ const CarSearch = ({ setPage }) => {
 
     const filters = {
       ...(brand !== "All" && brand && { brand }),
-      ...(price && { rentalPrice: price }),
+      ...(price && price !== "Any" && { rentalPrice: price }),
       ...(cleanMileageFrom || cleanMileageTo
         ? { mileage: { minMileage: cleanMileageFrom || undefined, maxMileage: cleanMileageTo || undefined } }
         : {}),
@@ -153,7 +155,7 @@ const CarSearch = ({ setPage }) => {
             <MenuItem value="" disabled>
               Select price
             </MenuItem>
-            {[30, 40, 50, 60, 70, 80, 90, 100, 110].map((price) => (
+            {["Any", ...prises].map((price) => (
               <MenuItem key={price} value={price} sx={{
 
                 fontSize: '16px',

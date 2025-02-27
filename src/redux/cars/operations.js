@@ -35,14 +35,14 @@ export const fetchCars = createAsyncThunk(
       params.append('limit', limit); 
 
       const url = `https://car-rental-api.goit.global/cars?${params.toString()}`;
-      console.log('Request URL: ', url);
+     
 
       const response = await fetch(url);
       if (!response.ok) throw new Error('Error in fetching data');
 
       
       const { cars, totalCars, totalPages } = await response.json();
-      console.log('Fetched data: ', cars);
+      
 
       
       return { cars, totalCars, totalPages };
