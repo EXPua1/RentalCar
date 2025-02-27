@@ -11,9 +11,21 @@ const BookingForm = () => {
 
     const handleClose = (resetForm) => {
         setOpen(false);
-        resetForm(); 
+        resetForm();
     };
 
+    const styles = {
+        fontFamily: 'var(--font-family)',
+        background: 'var(--inputs)',
+        width: '100%',
+        border: 'none',
+        '& .MuiInputBase-root': {
+            border: 'none',
+            '& .MuiOutlinedInput-notchedOutline': {
+                border: 'none',
+            },
+        },
+    }
     return (
         <div className={css.container}>
             <h2 className={css.title}>Book your car now</h2>
@@ -32,9 +44,9 @@ const BookingForm = () => {
                         ...values,
                         bookingDate: values.bookingDate ? values.bookingDate.format('YYYY-MM-DD') : null,
                     };
-                    console.log(formattedValues); 
+                    console.log(formattedValues);
 
-                    setTimeout(() => resetForm(), 0); 
+                    setTimeout(() => resetForm(), 0);
                 }}
             >
                 {({ setFieldValue, values, handleChange, resetForm }) => (
@@ -49,10 +61,7 @@ const BookingForm = () => {
                                             variant="outlined"
                                             fullWidth
                                             required
-                                            sx={{
-                                                borderRadius: '12px',
-                                                background: 'var(--inputs)',
-                                            }}
+                                            sx={styles}
                                         />
                                     )}
                                 </Field>
@@ -68,10 +77,7 @@ const BookingForm = () => {
                                             variant="outlined"
                                             fullWidth
                                             required
-                                            sx={{
-                                                borderRadius: '12px',
-                                                background: 'var(--inputs)',
-                                            }}
+                                            sx={styles}
                                         />
                                     )}
                                 </Field>
@@ -79,41 +85,42 @@ const BookingForm = () => {
 
                             <div className={css.formField}>
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <Field name="bookingDate">
-                                        {({ field }) => (
-                                            <MobileDatePicker
-                                                label="Booking Date"
-                                                {...field}
-                                                sx={{
-                                                    fontFamily: 'var(--font-family)',
-                                                    fontWeight: '500',
-                                                    fontSize: '16px',
-                                                    width: '100%',
-                                                    borderRadius: '12px',
-                                                    background: 'var(--inputs)',
-                                                }}
-                                                value={values.bookingDate}
-                                                onChange={(date) => setFieldValue('bookingDate', date)}
-                                                textField={(params) => (
-                                                    <TextField
-                                                        {...params}
-                                                        label="Booking Date"
-                                                        variant="outlined"
-                                                        fullWidth
-                                                        required
-                                                        placeholder="Enter date"
-                                                        InputProps={{
-                                                            ...params.InputProps,
-                                                            disableUnderline: true,
-                                                        }}
-                                                        sx={{
-                                                            width: '100%',
-                                                        }}
-                                                    />
-                                                )}
-                                            />
-                                        )}
-                                    </Field>
+                                  <Field name="bookingDate">
+    {({ field }) => (
+        <MobileDatePicker
+            label="Booking Date"
+            {...field}
+            value={values.bookingDate}
+            onChange={(date) => setFieldValue('bookingDate', date)}
+           
+            sx={styles}
+            textField={(params) => (
+                <TextField
+                    {...params}
+                    label="Booking Date"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    placeholder="Enter date"
+                    InputProps={{
+                        ...params.InputProps,
+                        disableUnderline: true,  
+                    }}
+                    sx={{
+                        width: '100%',
+                        border: 'none',  
+                        '& .MuiInputBase-root': {
+                            border: 'none',  
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                border: 'none',  
+                            },
+                        },
+                    }}
+                />
+            )}
+        />
+    )}
+</Field>
                                 </LocalizationProvider>
                             </div>
 
@@ -124,7 +131,19 @@ const BookingForm = () => {
                                     placeholder="Your comment"
                                     value={values.comment}
                                     onChange={handleChange}
-                                    style={{ width: '100%', height: '100px' }}
+                                    style={{
+                                        width: '100%',
+                                        height: '100px',
+                                        resize: 'none',
+                                        border: 'none',
+                                        borderRadius: '12px',
+                                        background: 'var(--inputs)',
+                                        fontFamily: 'var(--font-family)',
+                                        padding: '12px',
+                                        outline: 'none',
+                                    }}
+                                    
+                                  
                                 />
                             </div>
 
@@ -167,7 +186,7 @@ const BookingForm = () => {
 
                                 <Button
                                     onClick={() => handleClose(resetForm)}
-                                    sx={{ mt: 3 }}
+                                    sx={{ mt: 3}}
                                     variant="contained"
                                     fullWidth
                                 >

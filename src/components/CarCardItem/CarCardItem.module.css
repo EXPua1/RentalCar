@@ -9,6 +9,7 @@
   justify-content: space-between; /* Равномерное распределение */
   align-items: stretch;
   height: 100%; /* Заставляет все элементы быть одинаковыми */
+  margin-bottom: 15px;
 
   
 }

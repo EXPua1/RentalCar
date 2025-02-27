@@ -31,7 +31,7 @@ const CarSearch = ({ setPage }) => {
     const cleanMileageTo = mileageTo ? mileageTo.replace(/[^\d]/g, '') : '';
 
     const filters = {
-      ...(brand !== "All" && brand && { brand }), 
+      ...(brand !== "All" && brand && { brand }),
       ...(price && { rentalPrice: price }),
       ...(cleanMileageFrom || cleanMileageTo
         ? { mileage: { minMileage: cleanMileageFrom || undefined, maxMileage: cleanMileageTo || undefined } }
@@ -39,21 +39,21 @@ const CarSearch = ({ setPage }) => {
     };
 
     setPage(1);
-    dispatch(cleanCars()); 
-    dispatch(resetFilters()); 
+    dispatch(cleanCars());
+    dispatch(resetFilters());
     dispatch(setFilters(filters));
 
-    
+
     if (Object.keys(filters).length === 0) {
-      dispatch(fetchCars({ page: 1 })); 
+      dispatch(fetchCars({ page: 1 }));
     } else {
-      dispatch(fetchCars({ ...filters,limit:100, page: 1 })); 
+      dispatch(fetchCars({ ...filters, limit: 100, page: 1 }));
     }
   };
 
   const handleInputChange = (e, setter) => {
     let value = e.target.value;
-   
+
     value = value.replace(/[^\d]/g, '');
     setter(formatNumber(value));
   };
@@ -67,16 +67,29 @@ const CarSearch = ({ setPage }) => {
             value={brand || ""}
             onChange={(e) => setBrand(e.target.value)}
             displayEmpty
+            
             sx={{
               fontSize: "16px", height: "44px", width: "204px",
-              padding: '0px'
+              padding: '0px',
+              marginRight: '16px',
+              background: "var(--inputs);",
+              borderRadius: "12px",
+              border: "none",
+              "& .MuiSelect-root": {
+                padding: "0px",  // Убираем внутренние отступы
+                border: "none",  // Убираем бордер
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: "none",  // Убираем обводку
+              },
             }}
             MenuProps={{
               PaperProps: {
                 style: {
 
-                  maxHeight: 272, 
-                  overflowY: 'auto', 
+                  maxHeight: 272,
+                  overflowY: 'auto',
+                  marginTop: '4px'
                 },
               },
             }}
@@ -90,8 +103,11 @@ const CarSearch = ({ setPage }) => {
 
                 fontSize: '16px',
                 color: '#8D929A',
-                paddingTop: 0, 
-                paddingBottom: 0, 
+                paddingTop: 0,
+                paddingBottom: 0,
+                
+                
+
               }}>
                 {brand}
               </MenuItem>
@@ -107,12 +123,29 @@ const CarSearch = ({ setPage }) => {
             value={price || ""}
             onChange={(e) => setPrice(e.target.value)}
             displayEmpty
-            sx={{ fontSize: "16px", height: "44px", width: "204px" }}
+            sx={{
+              fontSize: "16px", height: "44px", width: "204px",
+              padding: '0px',
+              marginRight: '16px',
+              background: "var(--inputs);",
+              borderRadius: "12px",
+              border: "none",
+              "& .MuiSelect-root": {
+                padding: "0px",  // Убираем внутренние отступы
+                border: "none",  // Убираем бордер
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: "none",  // Убираем обводку
+              },
+            }}
+
             MenuProps={{
               PaperProps: {
                 style: {
-                  maxHeight: 300, 
-                  overflowY: 'auto', 
+
+                  maxHeight: 272,
+                  overflowY: 'auto',
+                  marginTop: '4px'
                 },
               },
             }}
@@ -125,8 +158,9 @@ const CarSearch = ({ setPage }) => {
 
                 fontSize: '16px',
                 color: '#8D929A',
-                paddingTop: 0, 
-                paddingBottom: 0, 
+                paddingTop: 0,
+                paddingBottom: 0,
+
               }}>
                 {price}
               </MenuItem>
@@ -141,12 +175,15 @@ const CarSearch = ({ setPage }) => {
           value={mileageFrom}
           onChange={(e) => handleInputChange(e, setMileageFrom)}
           startAdornment={<InputAdornment position="start">From</InputAdornment>}
+          disableUnderline
           sx={{
             height: "44px",
             width: "160px",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
+            borderRight: "1px solid var(--gray-light);",
+            borderRadius: "12px 0 0 12px;",
             paddingLeft: "10px",
+            background: "var(--inputs);"
+
           }}
         />
       </div>
@@ -156,12 +193,16 @@ const CarSearch = ({ setPage }) => {
           value={mileageTo}
           onChange={(e) => handleInputChange(e, setMileageTo)}
           startAdornment={<InputAdornment position="start">To</InputAdornment>}
+          disableUnderline={true}
           sx={{
+            fontFamily: 'var(--font-family)',
             height: "44px",
             width: "160px",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
+            borderRight: "1px solid var(--gray-light);",
+            borderRadius: "0 12px 12px 0",
             paddingLeft: "10px",
+            background: "var(--inputs);"
+
           }}
         />
       </div>
