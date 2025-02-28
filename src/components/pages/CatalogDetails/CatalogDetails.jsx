@@ -49,7 +49,7 @@ const CatalogDetails = () => {
         <Typography color="textSecondary">Car not found</Typography>
       ) : (
         <CarWrapper>
-          <CarWrapperInfo>
+          <CarWrapperInfo >
             <CarImage car={car} />
             <BookingForm />
           </CarWrapperInfo>

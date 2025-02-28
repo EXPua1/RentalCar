@@ -15,6 +15,14 @@ const Header = () => {
                     
                     <nav className={css.navigation}>
                         <ul className={css.navigationList}>
+                            <li>
+                                <NavLink
+                                    to="/favourite"
+                                    className={({ isActive }) => isActive ? css.active : undefined}
+                                >
+                                    Favourite
+                                </NavLink>
+                            </li>
                             <li className={css.navigationItem}>
                                 <NavLink
                                     to="/"

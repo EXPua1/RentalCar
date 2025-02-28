@@ -4,13 +4,16 @@ import { useSelector } from 'react-redux'
 import { selectCars } from '../../redux/cars/selectors'
 import css from './CarCard.module.css'
 
-const CarCard = () => {
-    const cars = useSelector(selectCars)
+const CarCard = ({cars, favourite}) => {
+ 
 
     return (
-        <ul className={css.list}>
-            <CarCardItem cars={cars} />
-        </ul>
+       
+            <ul className={css.list}>
+                <CarCardItem cars={cars} favourite={favourite} />
+            </ul>
+        
+       
     )
 }
 

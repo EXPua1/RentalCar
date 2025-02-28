@@ -62,166 +62,172 @@ const CarSearch = ({ setPage }) => {
 
   return (
     <div className={css.container}>
-      <div>
-        <p className={css.title}>Car brand</p>
-        <FormControl fullWidth>
-          <Select
-            value={brand || ""}
-            onChange={(e) => setBrand(e.target.value)}
-            displayEmpty
-            
-            sx={{
-              fontSize: "16px", height: "44px", width: "204px",
-              padding: '0px',
-              marginRight: '16px',
-              background: "var(--inputs);",
-              borderRadius: "12px",
-              border: "none",
-              "& .MuiSelect-root": {
-                padding: "0px",  // Убираем внутренние отступы
-                border: "none",  // Убираем бордер
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                border: "none",  // Убираем обводку
-              },
-            }}
-            MenuProps={{
-              PaperProps: {
-                style: {
+      <div className={css.filters}>
+        <div >
+          <p className={css.title}>Car brand</p>
+          <FormControl fullWidth>
+            <Select
+              value={brand || ""}
+              onChange={(e) => setBrand(e.target.value)}
+              displayEmpty
 
-                  maxHeight: 272,
-                  overflowY: 'auto',
-                  marginTop: '4px'
+              sx={{
+                fontSize: "16px", height: "44px", width: "204px",
+                padding: '0px',
+                marginRight: '16px',
+                background: "var(--inputs);",
+                borderRadius: "12px",
+                border: "none",
+                "& .MuiSelect-root": {
+                  padding: "0px",  
+                  border: "none", 
                 },
-              },
-            }}
-          >
-            <MenuItem value="" disabled>
-              Choose a brand
-            </MenuItem>
-            {["All", ...brands].map((brand, idx) => (
-
-              <MenuItem key={idx} value={brand} sx={{
-
-                fontSize: '16px',
-                color: '#8D929A',
-                paddingTop: 0,
-                paddingBottom: 0,
-                
-                
-
-              }}>
-                {brand}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-
-      <div>
-        <p className={css.title}>Price/ 1 hour</p>
-        <FormControl fullWidth>
-          <Select
-            value={price || ""}
-            onChange={(e) => setPrice(e.target.value)}
-            displayEmpty
-            sx={{
-              fontSize: "16px", height: "44px", width: "204px",
-              padding: '0px',
-              marginRight: '16px',
-              background: "var(--inputs);",
-              borderRadius: "12px",
-              border: "none",
-              "& .MuiSelect-root": {
-                padding: "0px",  // Убираем внутренние отступы
-                border: "none",  // Убираем бордер
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                border: "none",  // Убираем обводку
-              },
-            }}
-
-            MenuProps={{
-              PaperProps: {
-                style: {
-
-                  maxHeight: 272,
-                  overflowY: 'auto',
-                  marginTop: '4px'
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",  
                 },
-              },
-            }}
-          >
-            <MenuItem value="" disabled>
-              Select price
-            </MenuItem>
-            {["Any", ...prises].map((price) => (
-              <MenuItem key={price} value={price} sx={{
+              }}
+              MenuProps={{
+                PaperProps: {
+                  style: {
 
-                fontSize: '16px',
-                color: '#8D929A',
-                paddingTop: 0,
-                paddingBottom: 0,
-
-              }}>
-                {price}
+                    maxHeight: 272,
+                    overflowY: 'auto',
+                    marginTop: '4px'
+                  },
+                },
+              }}
+            >
+              <MenuItem value="" disabled>
+                Choose a brand
               </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              {["All", ...brands].map((brand, idx) => (
+
+                <MenuItem key={idx} value={brand} sx={{
+
+                  fontSize: '16px',
+                  color: '#8D929A',
+                  paddingTop: 0,
+                  paddingBottom: 0,
+
+
+
+                }}>
+                  {brand}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div>
+          <p className={css.title}>Price/ 1 hour</p>
+          <FormControl fullWidth>
+            <Select
+              value={price || ""}
+              onChange={(e) => setPrice(e.target.value)}
+              displayEmpty
+              sx={{
+                fontSize: "16px", height: "44px", width: "204px",
+                padding: '0px',
+                marginRight: '16px',
+                background: "var(--inputs);",
+                borderRadius: "12px",
+                border: "none",
+                "& .MuiSelect-root": {
+                  padding: "0px",  
+                  border: "none",  
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",  
+                },
+              }}
+
+              MenuProps={{
+                PaperProps: {
+                  style: {
+
+                    maxHeight: 272,
+                    overflowY: 'auto',
+                    marginTop: '4px'
+                  },
+                },
+              }}
+            >
+              <MenuItem value="" disabled>
+                Select price
+              </MenuItem>
+              {["Any", ...prises].map((price) => (
+                <MenuItem key={price} value={price} sx={{
+
+                  fontSize: '16px',
+                  color: '#8D929A',
+                  paddingTop: 0,
+                  paddingBottom: 0,
+
+                }}>
+                  {price}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div className={css.km}>
+          <div>
+            <p className={css.title}>Car mileage / km</p>
+            <Input
+              value={mileageFrom}
+              onChange={(e) => handleInputChange(e, setMileageFrom)}
+              startAdornment={<InputAdornment position="start">From</InputAdornment>}
+              disableUnderline
+              sx={{
+                height: "44px",
+                width: "160px",
+                borderRight: "1px solid var(--gray-light);",
+                borderRadius: "12px 0 0 12px;",
+                paddingLeft: "10px",
+                background: "var(--inputs);"
+
+              }}
+            />
+          </div>
+
+          <div>
+            <Input
+              value={mileageTo}
+              onChange={(e) => handleInputChange(e, setMileageTo)}
+              startAdornment={<InputAdornment position="start">To</InputAdornment>}
+              disableUnderline={true}
+              sx={{
+                fontFamily: 'var(--font-family)',
+                height: "44px",
+                width: "160px",
+                borderRight: "1px solid var(--gray-light);",
+                borderRadius: "0 12px 12px 0",
+                paddingLeft: "10px",
+                background: "var(--inputs);"
+
+              }}
+            />
+          </div>
+        </div>
+       
+
+        <Button onClick={handleSearch} disabled={loading} sx={{
+          borderRadius: '12px',
+          padding: '12px 51px',
+          width: '156px',
+          background: 'var(--button)',
+          color: 'white',
+          marginLeft: '16px'
+        }}>
+          {loading ? "Loading..." : "Search"}
+        </Button>
+
+        {error && <div>{error}</div>}
       </div>
-
-      <div>
-        <p className={css.title}>Car mileage / km</p>
-        <Input
-          value={mileageFrom}
-          onChange={(e) => handleInputChange(e, setMileageFrom)}
-          startAdornment={<InputAdornment position="start">From</InputAdornment>}
-          disableUnderline
-          sx={{
-            height: "44px",
-            width: "160px",
-            borderRight: "1px solid var(--gray-light);",
-            borderRadius: "12px 0 0 12px;",
-            paddingLeft: "10px",
-            background: "var(--inputs);"
-
-          }}
-        />
       </div>
-
-      <div>
-        <Input
-          value={mileageTo}
-          onChange={(e) => handleInputChange(e, setMileageTo)}
-          startAdornment={<InputAdornment position="start">To</InputAdornment>}
-          disableUnderline={true}
-          sx={{
-            fontFamily: 'var(--font-family)',
-            height: "44px",
-            width: "160px",
-            borderRight: "1px solid var(--gray-light);",
-            borderRadius: "0 12px 12px 0",
-            paddingLeft: "10px",
-            background: "var(--inputs);"
-
-          }}
-        />
-      </div>
-
-      <Button onClick={handleSearch} disabled={loading} sx={{
-        borderRadius: '12px',
-        padding: '12px 51px',
-        width: '156px',
-        background: 'var(--button)',
-        color: 'white',
-        marginLeft: '16px'
-      }}>
-        {loading ? "Loading..." : "Search"}
-      </Button>
-
-      {error && <div>{error}</div>}
-    </div>
+      
   );
 };
 

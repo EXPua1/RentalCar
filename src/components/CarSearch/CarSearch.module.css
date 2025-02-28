@@ -7,9 +7,36 @@
   margin-top: 84px;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 54px;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  align-items: flex-end;
+}
+
+.km{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+ .title{
+  margin-top: 15px;
+ }
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 54px;
+  justify-content: flex-start;
+}
+ .filters{
+ flex-direction: column;
+ align-items: flex-start;
+ }
+ .km{
+  margin-bottom: 15px;
+ }
 }

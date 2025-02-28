@@ -27,30 +27,38 @@ const CatalogPage = () => {
     dispatch(fetchBrands());
   }, [dispatch]);
 
- 
+
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1); 
+    setPage((prevPage) => prevPage + 1);
     dispatch(fetchCars({ page: page + 1 }));
 
   };
   const isLastPage = page >= totalPages;
   return (
     <Container>
-      <CarSearch setPage={setPage} />
-      <CarCard />
+      <div>
+        <CarSearch setPage={setPage} />
+        <CarCard cars={cars} />
 
-      {page < totalPages && (
-        
-        <Button
-          size="small"
-          text={loading ? "Loading..." : "Load More"}
-          transparent={true}
-          center={true}
-          onClick={handleLoadMore}
-          disabled={loading || isLastPage}
-        />
-      )}
+        {page < totalPages && (
+
+          <div className={css.loadMore}>
+            <Button
+              size="small"
+              text={loading ? "Loading..." : "Load More"}
+              transparent={true}
+
+              onClick={handleLoadMore}
+              disabled={loading || isLastPage}
+            />
+          </div>
+
+        )}
+
+      </div>
+
+
     </Container>
   );
 };

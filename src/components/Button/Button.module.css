@@ -28,17 +28,17 @@
 
 .center {
   display: block;
-  margin: 20px auto; /* Центрирование по горизонтали */
+  margin: 20px auto; 
 }
 
 .disabled {
-  background-color: #d3d3d3; /* Серая кнопка */
-  color: #a1a1a1; /* Серая надпись */
-  cursor: not-allowed; /* Меняет курсор, чтобы показать, что кнопка неактивна */
+  background-color: #d3d3d3; 
+  color: #a1a1a1; 
+  cursor: not-allowed; 
 }
 
 #loadMoreButton:disabled {
-  background-color: #d3d3d3;  /* Серая кнопка */
-  color: #a1a1a1;  /* Серая надпись */
-  cursor: not-allowed;  /* Меняет курсор */
+  background-color: #d3d3d3;  
+  color: #a1a1a1;  
+  cursor: not-allowed;  
 }

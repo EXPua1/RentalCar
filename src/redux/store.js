@@ -15,7 +15,7 @@ import { cars } from './cars/carsSlice';
 const persistConfig = {
   key: 'cars',
   storage,
-  whitelist: ['favorites', 'brands'],
+  whitelist: ['favourites', 'brands'],
 };
 
 export const store = configureStore({

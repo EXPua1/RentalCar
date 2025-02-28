@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleFavorite } from "../../redux/cars/carsSlice"; // Импортируем экшен
 import css from "./CarCardItem.module.css";
 import Button from "../Button/Button";
-import { selectPrice } from "../../redux/cars/selectors";
+import { selectFavourites, selectPrice } from "../../redux/cars/selectors";
 
-const CarCardItem = ({ cars }) => {
+const CarCardItem = ({ cars, favourite = false }) => {
     const dispatch = useDispatch();
-    const favorites = useSelector((state) => state.cars.favorites);
+    const favourites = useSelector(selectFavourites);
     const priceFilter = useSelector(selectPrice);
 
     const filteredCars = cars.filter((car) => {
@@ -24,7 +24,7 @@ const CarCardItem = ({ cars }) => {
         <>
             {filteredCars.length > 0 ? (
                 filteredCars.map((car) => {
-                    const isFavorite = favorites.some((favorite) => favorite.id === car.id);
+                    const isFavourites = favourites.some((favourite) => favourite.id === car.id);
 
                     return (
                         <li className={css.item} key={car.id}>
@@ -32,12 +32,12 @@ const CarCardItem = ({ cars }) => {
                                 <div className={css.imageWrapper}>
                                     <img className={css.image} src={car.img} alt={car.name} />
                                     <button
-                                        className={`${css.favorite} ${isFavorite ? css.active : ""}`}
+                                        className={`${css.favorite} ${isFavourites ? css.active : ""}`}
                                         onClick={() => handleFavoriteClick(car.id)}
                                     >
                                         <img
                                             className={css.favoriteImg}
-                                            src={isFavorite ? "1.svg" : "heart.svg"}
+                                            src={isFavourites ? "1.svg" : "heart.svg"}
                                             alt="Favorite"
                                         />
                                     </button>
@@ -65,7 +65,7 @@ const CarCardItem = ({ cars }) => {
                     );
                 })
             ) : (
-                <p>No cars found for this price</p>
+                    <p className={css.favouriteMessage}>{favourite ? "No favourites auto, add first" : "No cars found for this price"}</p>
             )}
         </>
     );

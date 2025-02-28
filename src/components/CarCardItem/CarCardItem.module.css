@@ -6,9 +6,9 @@
 .item {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Равномерное распределение */
+  justify-content: space-between; 
   align-items: stretch;
-  height: 100%; /* Заставляет все элементы быть одинаковыми */
+  height: 100%; 
   margin-bottom: 15px;
 
   
@@ -29,7 +29,7 @@
 }
 .carInfo p {
   display: inline-block;
-  margin-right: 5px; /* Добавляем пробел между маркой и моделью */
+  margin-right: 5px; 
 }
 .model {
   color: var(--button);
@@ -100,4 +100,9 @@
 
 .favoriteImg {
   width: 20px;
+}
+
+.favouriteMessage{
+  margin-top: 35px;
+ 
 }

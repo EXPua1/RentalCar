@@ -5,7 +5,7 @@ import { handleError, handleLoading } from '../../utils';
 const initialState = {
   cars: [],
   brands: [],
-  favorites: [],
+  favourites: [],
   filters: {
     brand: null,
     rentalPrice: null,
@@ -24,20 +24,20 @@ const carsSlice = createSlice({
     toggleFavorite: (state, action) => {
       const carId = action.payload;
       const car = state.cars.find(car => car.id === carId);
-      const isFavorite = state.favorites.some(
+      const isFavourite = state.favourites.some(
         favorite => favorite.id === carId
       );
 
-      if (isFavorite) {
-        state.favorites = state.favorites.filter(
-          favorite => favorite.id !== carId
+      if (isFavourite) {
+        state.favourites = state.favourites.filter(
+          favourite => favourite.id !== carId
         );
       } else {
-        state.favorites.push(car); 
+        state.favourites.push(car);
       }
     },
     clearFavorites: state => {
-      state.favorites = [];
+      state.favourites = [];
     },
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
@@ -76,6 +76,6 @@ const carsSlice = createSlice({
   },
 });
 
-export const { toggleFavorite, setFilters, resetFilters, cleanCars, clearFavorites } = carsSlice.actions;
+export const { toggleFavorite, setFilters, resetFilters, cleanCars} = carsSlice.actions;
 
 export const cars = carsSlice.reducer;

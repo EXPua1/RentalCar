@@ -8,6 +8,7 @@ import HomePage from "./components/pages/HomePage/HomePage";
 import CatalogPage from "./components/pages/CatalogPage/CatalogPage";
 import CatalogDetails from "./components/pages/CatalogDetails/CatalogDetails";
 import Header from "./components/Header/Header";
+import FavouritePage from "./components/pages/FavouritePage/FavouritePage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/catalog/:id" element={<CatalogDetails />} />
+        <Route path="/favourite" element={<FavouritePage/>} />
       </Routes>
     </>
 
