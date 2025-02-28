@@ -57,7 +57,7 @@ const CarCardItem = ({ cars, favourite = false }) => {
                                 </div>
                                 <div className={css.type}>
                                     <p className={css.typeVehicle}>{car.type}</p>
-                                    <p className={css.mileage}>{car.mileage.toLocaleString("ru-RU")}</p>
+                                    <p className={css.mileage}>{car.mileage.toLocaleString("ru-RU")} km</p>
                                 </div>
                                 <Button text="View" to={`/catalog/${car.id}`} size="big" />
                             </div>
